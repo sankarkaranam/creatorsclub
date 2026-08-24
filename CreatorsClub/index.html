@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Creators Club — Opening Soon</title>
+<meta name="description" content="A members-only room for people who make things. The Creators Club opens its doors soon — reserve your card." />
+<meta name="theme-color" content="#14120F" />
+
+<!-- Open Graph -->
+<meta property="og:title" content="Creators Club — Opening Soon" />
+<meta property="og:description" content="A members-only room for people who make things. Reserve your card before doors open." />
+<meta property="og:type" content="website" />
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2314120F'/%3E%3Cpath d='M14 24a10 10 0 0 1 10-10h16a10 10 0 0 1 10 10v2a6 6 0 0 0 0 12v2a10 10 0 0 1-10 10H24A10 10 0 0 1 14 40v-2a6 6 0 0 0 0-12z' fill='none' stroke='%23C9A24B' stroke-width='3'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,340;0,9..144,560;0,9..144,680;1,9..144,460&family=Space+Grotesk:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --ink:#14120F;
+    --ink-soft:#201C15;
+    --ink-line: rgba(243,238,225,0.14);
+    --paper:#EFE7D3;
+    --paper-dim:#E3D9BE;
+    --gold:#C9A24B;
+    --gold-bright:#E4C468;
+    --violet:#6E4CF0;
+    --violet-bright:#8C72F7;
+    --cream:#F3EEE1;
+    --muted:#a39a86;
+    --success:#5FA37A;
+    --radius-card: 22px;
+    --max: 1080px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 50% -10%, rgba(110,76,240,0.18), transparent 60%),
+      radial-gradient(900px 500px at 85% 15%, rgba(201,162,75,0.10), transparent 55%),
+      var(--ink);
+    color:var(--cream);
+    font-family:'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* film-grain texture overlay */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:50;
+    opacity:0.05;
+    mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  a{color:inherit;}
+
+  .wrap{
+    max-width:var(--max);
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    padding-top:32px;
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-bottom:20px;
+    border-bottom:1px solid var(--ink-line);
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    letter-spacing:0.02em;
+    font-size:1rem;
+  }
+  .brand-mark{
+    width:30px; height:30px;
+    border-radius:8px;
+    border:1.5px solid var(--gold);
+    position:relative;
+    flex-shrink:0;
+  }
+  .brand-mark::before{
+    content:"";
+    position:absolute; inset:6px;
+    border:1.5px solid var(--gold);
+    border-radius:50%;
+  }
+  .status-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    border:1px solid var(--ink-line);
+    padding:7px 14px 7px 10px;
+    border-radius:999px;
+  }
+  .status-dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--success);
+    box-shadow:0 0 0 3px rgba(95,163,122,0.18);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ opacity:1; transform:scale(1); }
+    50%{ opacity:0.5; transform:scale(0.85); }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:76px 0 40px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.75rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    margin:0 0 22px;
+  }
+  h1.headline{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    font-size:clamp(2.6rem, 7.4vw, 5.4rem);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  h1.headline em{
+    font-style:italic;
+    font-weight:460;
+    color:var(--violet-bright);
+  }
+  .sub{
+    max-width:520px;
+    margin:26px auto 0;
+    font-size:1.05rem;
+    line-height:1.6;
+    color:var(--muted);
+  }
+  .sub strong{ color:var(--cream); font-weight:500; }
+
+  /* ---------- TICKET ---------- */
+  .ticket-stage{
+    display:flex; justify-content:center;
+    padding:64px 0 12px;
+    perspective:1400px;
+  }
+  .ticket{
+    width:min(92vw, 460px);
+    background:var(--paper);
+    color:var(--ink);
+    border-radius:var(--radius-card);
+    position:relative;
+    display:flex;
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,0.55),
+      0 0 0 1px rgba(0,0,0,0.04);
+    transform:rotate(-3deg);
+    transition:transform 0.25s ease-out;
+    will-change:transform;
+  }
+  .ticket-main{
+    flex:1;
+    padding:26px 22px 22px;
+    position:relative;
+  }
+  .ticket-stub{
+    width:104px;
+    flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .ticket-stub span{
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--ink);
+    opacity:0.55;
+  }
+  /* perforation between main and stub */
+  .perf{
+    position:absolute;
+    top:0; bottom:0; left:0;
+    width:0;
+    border-left:2px dashed rgba(20,18,15,0.28);
+  }
+  .perf::before, .perf::after{
+    content:"";
+    position:absolute; left:50%;
+    width:22px; height:22px;
+    background:var(--ink);
+    border-radius:50%;
+    transform:translateX(-50%);
+  }
+  .perf::before{ top:-11px; }
+  .perf::after{ bottom:-11px; }
+
+  .ticket-top{
+    display:flex; align-items:center; justify-content:space-between;
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    opacity:0.62;
+  }
+  .ticket-title{
+    font-family:'Fraunces', serif;
+    font-weight:680;
+    font-size:1.7rem;
+    margin:14px 0 4px;
+    letter-spacing:-0.01em;
+  }
+  .ticket-desc{
+    font-size:0.82rem;
+    color:#4a4536;
+    margin:0 0 20px;
+  }
+  .ticket-member{
+    font-family:'Space Mono', monospace;
+    font-size:0.98rem;
+    letter-spacing:0.03em;
+    display:flex; align-items:baseline; gap:8px;
+  }
+  .ticket-member small{
+    font-size:0.62rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    opacity:0.55;
+  }
+  .stamp{
+    position:absolute; right:18px; bottom:18px;
+    width:74px; height:74px;
+    border:2px solid var(--violet);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transform:rotate(14deg);
+    color:var(--violet);
+    font-family:'Space Mono', monospace;
+    font-size:0.6rem;
+    letter-spacing:0.05em;
+    text-align:center;
+    line-height:1.15;
+    text-transform:uppercase;
+    opacity:0.9;
+    mix-blend-mode:multiply;
+  }
+
+  /* ---------- FORM ---------- */
+  .capture{
+    max-width:460px;
+    margin:56px auto 0;
+    text-align:center;
+  }
+  .capture-label{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:16px;
+  }
+  form.join{
+    display:flex;
+    gap:10px;
+    background:var(--ink-soft);
+    border:1px solid var(--ink-line);
+    border-radius:14px;
+    padding:6px;
+  }
+  form.join input[type="email"]{
+    flex:1;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:var(--cream);
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.95rem;
+    padding:12px 14px;
+  }
+  form.join input[type="email"]::placeholder{ color:#6f6a5c; }
+  button.cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--gold);
+    color:var(--ink);
+    border:none;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:0.9rem;
+    letter-spacing:0.01em;
+    padding:12px 18px;
+    border-radius:9px;
+    cursor:pointer;
+    transition:background 0.15s ease, transform 0.15s ease;
+    white-space:nowrap;
+  }
+  button.cta:hover{ background:var(--gold-bright); transform:translateY(-1px); }
+  button.cta:active{ transform:translateY(0); }
+  button.cta:focus-visible, input:focus-visible, a:focus-visible{
+    outline:2px solid var(--violet-bright);
+    outline-offset:2px;
+  }
+  .fine-print{
+    margin-top:14px;
+    font-size:0.78rem;
+    color:#7a7462;
+  }
+  .form-msg{
+    margin-top:14px;
+    font-family:'Space Mono', monospace;
+    font-size:0.82rem;
+    color:var(--success);
+    display:none;
+  }
+  .form-msg.show{ display:block; }
+
+  /* ---------- COUNTDOWN ---------- */
+  .board-wrap{
+    margin:74px auto 0;
+    text-align:center;
+  }
+  .board-label{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin-bottom:18px;
+  }
+  .board{
+    display:inline-flex;
+    gap:14px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .flap{
+    width:78px;
+  }
+  .flap-face{
+    background:linear-gradient(180deg, #26221a, #1a170f);
+    border:1px solid rgba(201,162,75,0.25);
+    border-radius:10px;
+    padding:14px 0 10px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.04);
+    position:relative;
+  }
+  .flap-face::after{
+    content:"";
+    position:absolute; left:0; right:0; top:50%;
+    height:1px;
+    background:rgba(0,0,0,0.35);
+  }
+  .flap-num{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:1.9rem;
+    color:var(--gold-bright);
+    letter-spacing:0.02em;
+    font-variant-numeric:tabular-nums;
+  }
+  .flap-tag{
+    display:block;
+    margin-top:8px;
+    font-family:'Space Mono', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ---------- WHAT'S INSIDE ---------- */
+  .inside{
+    margin:96px auto 0;
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:1px;
+    background:var(--ink-line);
+    border:1px solid var(--ink-line);
+    border-radius:16px;
+    overflow:hidden;
+  }
+  .inside-item{
+    background:var(--ink);
+    padding:28px 24px;
+  }
+  .inside-tag{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    margin-bottom:10px;
+  }
+  .inside-item h3{
+    font-family:'Fraunces', serif;
+    font-weight:560;
+    font-size:1.25rem;
+    margin:0 0 8px;
+  }
+  .inside-item p{
+    margin:0;
+    font-size:0.9rem;
+    line-height:1.55;
+    color:var(--muted);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top:110px;
+    padding:32px 0 48px;
+    border-top:1px solid var(--ink-line);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+    font-size:0.82rem;
+    color:#7a7462;
+  }
+  .socials{
+    display:flex; gap:18px;
+  }
+  .socials a{
+    color:var(--muted);
+    text-decoration:none;
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+    transition:color 0.15s ease;
+  }
+  .socials a:hover{ color:var(--gold-bright); }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 620px){
+    .inside{ grid-template-columns:1fr; }
+    form.join{ flex-direction:column; }
+    button.cta{ justify-content:center; }
+    .flap{ width:64px; }
+    .flap-num{ font-size:1.5rem; }
+    footer{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; }
+    .ticket{ transform:rotate(-3deg) !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="nav">
+    <div class="nav-row">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        CREATORS CLUB
+      </div>
+      <span class="status-pill"><span class="status-dot" aria-hidden="true"></span>Applications opening soon</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Membership · Founding cohort</p>
+      <h1 class="headline">The club is<br><em>opening soon.</em></h1>
+      <p class="sub">A members-only room for people who make things — and want to be taken <strong>seriously</strong> doing it. Founding cards are limited.</p>
+    </section>
+
+    <div class="ticket-stage">
+      <div class="ticket" id="ticket">
+        <div class="ticket-main">
+          <div class="ticket-top">
+            <span>Creators Club</span>
+            <span>Est. 2026</span>
+          </div>
+          <h2 class="ticket-title">Admit One</h2>
+          <p class="ticket-desc">Founding membership card. Non-transferable.</p>
+          <div class="ticket-member">
+            <small>Member No.</small>
+            <span id="memberNo">000000</span>
+          </div>
+          <div class="stamp">Not<br>Yet<br>Issued</div>
+        </div>
+        <div class="ticket-stub">
+          <span class="perf" aria-hidden="true"></span>
+          <span>Founding&nbsp;Cohort</span>
+        </div>
+      </div>
+    </div>
+
+    <section class="capture">
+      <p class="capture-label">Reserve your card</p>
+      <form class="join" id="joinForm">
+        <label for="email" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);">Email address</label>
+        <input id="email" type="email" name="email" placeholder="you@domain.com" required autocomplete="email" />
+        <button class="cta" type="submit">Reserve my card →</button>
+      </form>
+      <p class="form-msg" id="formMsg">You're on the list. Card ships when doors open.</p>
+      <p class="fine-print">No spam. One email when we open — that's it.</p>
+    </section>
+
+    <section class="board-wrap">
+      <p class="board-label">Doors open in</p>
+      <div class="board" id="board">
+        <div class="flap"><div class="flap-face"><span class="flap-num" id="d">00</span></div><span class="flap-tag">Days</span></div>
+        <div class="flap"><div class="flap-face"><span class="flap-num" id="h">00</span></div><span class="flap-tag">Hours</span></div>
+        <div class="flap"><div class="flap-face"><span class="flap-num" id="m">00</span></div><span class="flap-tag">Mins</span></div>
+        <div class="flap"><div class="flap-face"><span class="flap-num" id="s">00</span></div><span class="flap-tag">Secs</span></div>
+      </div>
+    </section>
+
+    <section class="inside">
+      <div class="inside-item">
+        <p class="inside-tag">Community</p>
+        <h3>A room, not a feed</h3>
+        <p>Small enough that people notice when you show up. No algorithm deciding who you meet.</p>
+      </div>
+      <div class="inside-item">
+        <p class="inside-tag">Resources</p>
+        <h3>Tools worth keeping</h3>
+        <p>Templates, playbooks and reviews from people who've actually shipped the thing you're stuck on.</p>
+      </div>
+      <div class="inside-item">
+        <p class="inside-tag">Accountability</p>
+        <h3>Someone checking in</h3>
+        <p>Set a goal, say it out loud, and have a room that expects you to follow through.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <span>© <span id="year"></span> Creators Club. All rights reserved.</span>
+    <nav class="socials">
+      <a href="#" aria-label="Instagram">Instagram</a>
+      <a href="#" aria-label="X / Twitter">X</a>
+      <a href="#" aria-label="YouTube">YouTube</a>
+    </nav>
+  </footer>
+
+</div>
+
+<script>
+  // ---- CONFIGURE LAUNCH DATE HERE ----
+  // Format: new Date("YYYY-MM-DDTHH:MM:SS")
+  const LAUNCH_DATE = new Date("2026-12-25T00:00:00");
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Countdown
+  function pad(n){ return String(Math.max(n,0)).padStart(2,'0'); }
+  function tick(){
+    const now = new Date();
+    let diff = Math.max(0, LAUNCH_DATE - now);
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('d').textContent = pad(d);
+    document.getElementById('h').textContent = pad(h);
+    document.getElementById('m').textContent = pad(m);
+    document.getElementById('s').textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Member number — a light "momentum" counter (purely cosmetic, no backend).
+  // Change START_MEMBER to whatever you want the counter to settle on.
+  (function(){
+    const el = document.getElementById('memberNo');
+    const START_MEMBER = 4127;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced){
+      el.textContent = String(START_MEMBER).padStart(6,'0');
+      return;
+    }
+    let current = 0;
+    const step = Math.max(1, Math.floor(START_MEMBER / 40));
+    const iv = setInterval(() => {
+      current += step;
+      if (current >= START_MEMBER){
+        current = START_MEMBER;
+        clearInterval(iv);
+      }
+      el.textContent = String(current).padStart(6,'0');
+    }, 30);
+  })();
+
+  // Subtle tilt on the ticket, mouse-driven, disabled for touch / reduced motion
+  (function(){
+    const ticket = document.getElementById('ticket');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isFine = window.matchMedia('(pointer: fine)').matches;
+    if (prefersReduced || !isFine) return;
+    const stage = document.querySelector('.ticket-stage');
+    stage.addEventListener('mousemove', (e) => {
+      const rect = stage.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      ticket.style.transform = `rotate(${-3 + x * 6}deg) rotateX(${ -y * 6 }deg)`;
+    });
+    stage.addEventListener('mouseleave', () => {
+      ticket.style.transform = 'rotate(-3deg)';
+    });
+  })();
+
+  // Email capture.
+  // This form works standalone (shows a confirmation, no backend required).
+  // To actually collect emails, set FORM_ENDPOINT to a service like Formspree,
+  // Getform, or ConvertKit's form action URL, e.g.:
+  //   const FORM_ENDPOINT = "https://formspree.io/f/xxxxxxx";
+  const FORM_ENDPOINT = ""; // <-- put your form endpoint here
+
+  document.getElementById('joinForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const form = e.target;
+    const msg = document.getElementById('formMsg');
+    const btn = form.querySelector('button');
+    const emailVal = form.email.value;
+
+    if (FORM_ENDPOINT){
+      btn.disabled = true;
+      btn.textContent = "Sending…";
+      try{
+        await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: { "Accept": "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify({ email: emailVal })
+        });
+      }catch(err){ /* fail quietly, still show confirmation below */ }
+      btn.disabled = false;
+      btn.textContent = "Reserve my card →";
+    }
+
+    form.reset();
+    msg.classList.add('show');
+  });
+</script>
+
+</body>
+</html>
