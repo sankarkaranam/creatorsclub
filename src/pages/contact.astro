@@ -1,0 +1,95 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../lib/site';
+---
+<Base title="Contact" description="Questions, partnerships or brand campaigns: get in touch with the Creators Club team.">
+  <section class="relative isolate overflow-hidden pt-32 pb-24">
+    <div class="bg-aurora absolute inset-0 -z-10"></div>
+    <div class="container-x grid gap-14 lg:grid-cols-[1fr_1.1fr]">
+      <div>
+        <p class="eyebrow" data-reveal>Contact</p>
+        <h1 class="mt-5 text-4xl font-black leading-tight text-white md:text-6xl" data-reveal>Let’s talk.</h1>
+        <p class="mt-5 max-w-md text-lg text-mute" data-reveal>Brand campaigns, partnerships, press or help with your account. Send a message and the team will reply by email.</p>
+        <dl class="mt-10 space-y-5 text-sm" data-reveal>
+          <div><dt class="text-mute">Company</dt><dd class="mt-1 font-semibold text-white">{SITE.company}</dd></div>
+          <div><dt class="text-mute">Location</dt><dd class="mt-1 font-semibold text-white">{SITE.location}</dd></div>
+          {SITE.email && <div><dt class="text-mute">Email</dt><dd class="mt-1"><a href={`mailto:${SITE.email}`} class="font-semibold text-white underline decoration-crimson underline-offset-4">{SITE.email}</a></dd></div>}
+          <div><dt class="text-mute">Already a member?</dt><dd class="mt-1"><a href={SITE.loginUrl} class="font-semibold text-white underline decoration-crimson underline-offset-4">Log in to your dashboard</a></dd></div>
+        </dl>
+      </div>
+
+      <form id="contact-form" class="card space-y-5 p-6 md:p-9" novalidate data-reveal>
+        <div class="grid gap-5 sm:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-semibold text-white">Name</span>
+            <input name="name" required maxlength="120" autocomplete="name" class="mt-2 w-full rounded-xl border border-line bg-ink px-4 py-3 text-white placeholder:text-zinc-600 focus:border-crimson focus:outline-none" />
+          </label>
+          <label class="block">
+            <span class="text-sm font-semibold text-white">Email</span>
+            <input name="email" type="email" required maxlength="200" autocomplete="email" class="mt-2 w-full rounded-xl border border-line bg-ink px-4 py-3 text-white focus:border-crimson focus:outline-none" />
+          </label>
+        </div>
+        <fieldset>
+          <legend class="text-sm font-semibold text-white">I am a</legend>
+          <div class="mt-2 flex flex-wrap gap-2">
+            {[['creator', 'Creator'], ['brand', 'Brand'], ['other', 'Something else']].map(([v, l], i) => (
+              <label class="cursor-pointer">
+                <input type="radio" name="role" value={v} class="peer sr-only" checked={i === 0} />
+                <span class="inline-block rounded-full border border-line px-4 py-2 text-sm text-mute peer-checked:border-crimson peer-checked:bg-crimson/15 peer-checked:text-white peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-ember">{l}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+        <label class="block">
+          <span class="text-sm font-semibold text-white">Message</span>
+          <textarea name="message" required rows="5" maxlength="4000" class="mt-2 w-full rounded-xl border border-line bg-ink px-4 py-3 text-white focus:border-crimson focus:outline-none"></textarea>
+        </label>
+        <!-- spam trap: real people never see or fill this -->
+        <input name="website" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true" />
+        <button type="submit" class="btn btn-primary w-full justify-center sm:w-auto">Send message</button>
+        <p id="contact-status" role="status" class="text-sm"></p>
+        <p class="text-xs text-mute">We use your details only to reply. See our <a href="/privacy" class="underline">privacy policy</a>.</p>
+      </form>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('contact-status');
+  const params = new URLSearchParams(location.search);
+  const role = params.get('role');
+  if (form && role) {
+    const input = form.querySelector<HTMLInputElement>(`input[name="role"][value="${CSS.escape(role)}"]`);
+    if (input) input.checked = true;
+  }
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!status) return;
+    if (!form.checkValidity()) {
+      status.className = 'text-sm text-ember';
+      status.textContent = 'Please add your name, a valid email and a message.';
+      return;
+    }
+    const button = form.querySelector('button');
+    button?.setAttribute('disabled', '');
+    status.className = 'text-sm text-mute';
+    status.textContent = 'Sending…';
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(Object.fromEntries(new FormData(form))),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      form.reset();
+      status.className = 'text-sm text-success';
+      status.textContent = 'Thanks! Your message is in. We’ll reply by email.';
+    } catch {
+      status.className = 'text-sm text-ember';
+      status.textContent = 'Sorry, that didn’t go through. Please try again in a few minutes.';
+    } finally {
+      button?.removeAttribute('disabled');
+    }
+  });
+</script>

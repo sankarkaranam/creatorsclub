@@ -1,0 +1,117 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import FeatureCard from '../components/ui/FeatureCard.astro';
+import CtaBand from '../components/ui/CtaBand.astro';
+import Faq from '../components/ui/Faq.astro';
+import Icon from '../components/ui/Icon.astro';
+import NetworkScene from '../components/three/NetworkScene';
+
+const filters = [
+  { t: 'Start with every creator', d: 'Browse the whole network of creators on Creators Club.' },
+  { t: 'Pick your category', d: 'Food, beauty, tech, travel, finance and more: narrow to your niche.' },
+  { t: 'Only verified identities', d: 'Every creator you see has passed DigiLocker e-KYC.' },
+  { t: 'Real audience, your minimum', d: 'Set a minimum audience. Reach is the sum of verified channel followers, never an estimate.' },
+];
+
+const faqs = [
+  { q: 'How does a brand get verified?', a: 'Verify your business with PAN or GSTIN, and the authorised signatory through DigiLocker. The Verified badge appears only after the provider confirms it.' },
+  { q: 'How are audience numbers calculated?', a: 'From the creator’s linked YouTube and Instagram channels. We show the sum of verified channel followers and never estimate or let creators type numbers in.' },
+  { q: 'Can I invite specific creators?', a: 'Yes. Send personal invites to the creators you want (up to 25 at a time) as well as publishing campaigns for anyone who qualifies to pitch.' },
+  { q: 'Do I approve the content before it goes live?', a: 'Yes. Every deal moves through script, draft and live stages, and each one waits for your approval.' },
+];
+---
+<Base title="For brands" description="Work only with identity-verified creators whose audience comes from their real channels. Post campaigns, invite creators, compare bids and approve every stage.">
+  <section class="relative isolate overflow-hidden pt-28 md:pt-36">
+    <div class="bg-aurora absolute inset-0 -z-10"></div>
+    <div class="absolute -right-40 top-10 -z-10 h-[28rem] w-[28rem] rounded-full bg-brand/20 blur-3xl"></div>
+    <div class="container-x pb-20 text-center">
+      <p class="eyebrow !text-brand" data-reveal>For brands</p>
+      <h1 class="mx-auto mt-5 max-w-4xl text-5xl font-black leading-[1.03] text-white md:text-7xl" data-reveal>
+        Stop paying for <span class="text-gradient">followers who don’t exist.</span>
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-mute" data-reveal>
+        Every creator on Creators Club is identity-verified and every audience number comes from their real channels. Find the right people, run the campaign and approve every stage in one place.
+      </p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3" data-reveal>
+        <a href="/get-started" class="btn btn-primary">Start as a brand <Icon name="arrow" class="h-4 w-4" /></a>
+        <a href="/contact" class="btn btn-ghost">Talk to us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PINNED NETWORK -->
+  <section id="brand-network" class="relative h-[320vh]">
+    <div class="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div class="container-x grid h-full items-center gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+        <div class="relative z-10 pt-20 lg:pt-0">
+          <p class="eyebrow">Discovery</p>
+          <h2 class="mt-4 text-3xl font-extrabold leading-tight text-white md:text-5xl">Find your creators in four filters.</h2>
+          <ol class="mt-8 hidden space-y-5 md:block">
+            {filters.map((f, i) => (
+              <li class="flex gap-4">
+                <span class="font-display text-sm font-black text-ember">0{i + 1}</span>
+                <div>
+                  <p class="font-bold text-white">{f.t}</p>
+                  <p class="mt-0.5 text-sm text-mute">{f.d}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </div>
+        <div class="relative h-[62vh] lg:h-[80vh]">
+          <NetworkScene client:only="react" sectionId="brand-network" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative py-24 md:py-32">
+    <div class="container-x">
+      <SectionHeading
+        eyebrow="Campaigns"
+        title="Run campaigns without the spreadsheet."
+        highlight="without the spreadsheet."
+        intro="Draft, publish, invite and manage every collaboration from one board."
+      />
+      <div class="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
+        <FeatureCard icon="megaphone" tone="brand" title="Publish campaigns" body="Paid or barter, with your brief, deliverables and minimum audience. Drafts stay private until you publish." />
+        <FeatureCard icon="users" tone="brand" title="Invite the right creators" body="Send personal invites to creators you’ve found, alongside open applications." />
+        <FeatureCard icon="chart" tone="brand" title="Compare bids" body="Sort and review creator quotes side by side before you accept." />
+        <FeatureCard icon="flag" tone="brand" title="Approve every stage" body="Script, draft and live link each wait for your approval. Ask for changes when you need them." />
+        <FeatureCard icon="layers" tone="brand" title="One board for everything" body="Drafts, published, active collaborations and completed work, each in its own view." />
+        <FeatureCard icon="lock" tone="brand" title="Pause or close any time" body="Pause, resume or close a campaign; the minimum audience is enforced for every pitch." />
+      </div>
+    </div>
+  </section>
+
+  <section class="relative py-24 md:py-28">
+    <div class="container-x">
+      <div class="grid items-center gap-12 rounded-[32px] border border-line bg-ink-2 p-8 md:grid-cols-2 md:p-14" data-reveal>
+        <div>
+          <p class="eyebrow !text-brand">Trust, both ways</p>
+          <h2 class="mt-4 text-3xl font-extrabold leading-tight text-white md:text-4xl">Creators know you’re real, too.</h2>
+          <p class="mt-4 text-mute">Brands verify with PAN or GSTIN before posting a campaign, so the best creators take your offer seriously from the first message.</p>
+        </div>
+        <div class="grid gap-3">
+          {[
+            ['badge', 'Verified business badge after PAN or GSTIN check'],
+            ['shield', 'Authorised signatory verified via DigiLocker'],
+            ['eye', 'Your minimum audience enforced on every pitch'],
+          ].map(([icon, t]) => (
+            <div class="glass flex items-center gap-3 rounded-2xl p-4"><Icon name={icon as any} class="h-6 w-6 shrink-0 text-brand" /><span class="text-sm font-semibold text-white">{t}</span></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative pb-8 pt-16">
+    <div class="container-x">
+      <SectionHeading eyebrow="Questions" title="Brand FAQ" />
+      <div class="mt-12"><Faq items={faqs} /></div>
+    </div>
+  </section>
+
+  <CtaBand title="Work with creators you can verify." body="Create your brand account, verify your business and publish your first campaign." />
+</Base>

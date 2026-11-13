@@ -1,0 +1,164 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import FeatureCard from '../components/ui/FeatureCard.astro';
+import CtaBand from '../components/ui/CtaBand.astro';
+import Faq from '../components/ui/Faq.astro';
+import Icon from '../components/ui/Icon.astro';
+import PhoneScene from '../components/three/PhoneScene';
+
+const stages = [
+  { t: 'Pitch', d: 'Send your quote for a campaign. Revise or withdraw it any time before the brand decides.' },
+  { t: 'Script', d: 'Share your script or concept for the brand to approve.' },
+  { t: 'Draft', d: 'Upload the draft link. The brand approves or asks for changes.' },
+  { t: 'Live', d: 'Post it and add the live link. The deal is complete and on your record.' },
+];
+
+const faqs = [
+  { q: 'Is my Aadhaar stored?', a: 'No. Verification runs through DigiLocker with your consent. We keep only a one-way hash, to stop duplicate accounts, and a masked form such as XXXX-XXXX-1234.' },
+  { q: 'What if I don’t meet the 20K criteria yet?', a: 'Join anyway. You can verify, build your profile, connect your channels, use the Instagram console and sell products. Brand campaign pitches unlock once your linked channels reach 20,000 subscribers and 20,000 views in the last 30 days.' },
+  { q: 'Which platforms can I connect?', a: 'YouTube and Instagram professional (Business or Creator) accounts.' },
+  { q: 'Can I sell products I don’t make myself?', a: 'Yes. Add your own products with direct payments, or paste an affiliate link and we fill in the title, description and image for you.' },
+];
+---
+<Base title="For creators" description="Get verified, pitch for brand campaigns, automate Instagram replies, capture leads and sell your own products. Creators Club is built for India’s creators.">
+  <!-- HERO with 3D phone -->
+  <section id="creator-hero" class="relative isolate overflow-hidden pt-28 md:pt-32">
+    <div class="bg-aurora absolute inset-0 -z-10"></div>
+    <div class="absolute -left-40 top-20 -z-10 h-96 w-96 rounded-full bg-creator/20 blur-3xl"></div>
+    <div class="container-x grid items-center gap-10 pb-16 lg:grid-cols-2 lg:pb-24">
+      <div>
+        <p class="eyebrow !text-creator" data-reveal>For creators</p>
+        <h1 class="mt-5 text-5xl font-black leading-[1.03] text-white md:text-6xl lg:text-7xl" data-reveal>
+          Your audience is real. <span class="text-gradient">Now prove it.</span>
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-mute" data-reveal>
+          Get verified once and every brand sees a creator they can trust. Then use the same account to win campaigns, reply to every comment automatically and sell to your audience.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3" data-reveal>
+          <a href="/get-started" class="btn btn-primary">Start as a creator <Icon name="arrow" class="h-4 w-4" /></a>
+          <a href="#automation" class="btn btn-ghost">See the automation</a>
+        </div>
+        <ul class="mt-10 grid max-w-lg grid-cols-2 gap-4 text-sm text-zinc-300" data-reveal-stagger>
+          <li class="flex gap-2"><Icon name="shield" class="h-5 w-5 text-creator" />DigiLocker e-KYC</li>
+          <li class="flex gap-2"><Icon name="play" class="h-5 w-5 text-creator" />YouTube + Instagram</li>
+          <li class="flex gap-2"><Icon name="handshake" class="h-5 w-5 text-creator" />Verified brand deals</li>
+          <li class="flex gap-2"><Icon name="store" class="h-5 w-5 text-creator" />Your own store</li>
+        </ul>
+      </div>
+      <div class="relative h-[560px] md:h-[640px]">
+        <PhoneScene client:only="react" sectionId="creator-hero" />
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY VERIFIED -->
+  <section class="relative py-24 md:py-32">
+    <div class="container-x">
+      <SectionHeading
+        eyebrow="Why verification pays"
+        title="Brands pay more for creators they can trust."
+        highlight="they can trust."
+        intro="Fake followers have made brands careful. A Creators Club profile answers their questions before they ask: who you are, and how many real people you reach."
+      />
+      <div class="mt-16 grid gap-5 md:grid-cols-3" data-reveal-stagger>
+        <FeatureCard icon="shield" tone="verified" title="Identity, verified once" body="Aadhaar e-KYC through DigiLocker, then phone and email checks. No bots and no one pretending to be you." />
+        <FeatureCard icon="badge" tone="verified" title="Reach brands can believe" body="Subscribers, followers and views come from your linked YouTube and Instagram channels, and refresh as you grow." />
+        <FeatureCard icon="eye" tone="verified" title="A profile that sells you" body="Your showcase, categories, past work and verified badge in one place for brands to discover." />
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND DEALS -->
+  <section class="relative py-24 md:py-32">
+    <div class="container-x grid items-start gap-14 lg:grid-cols-2">
+      <div class="lg:sticky lg:top-28">
+        <SectionHeading
+          align="left"
+          eyebrow="Brand deals"
+          title="Pitch, deliver and get credit, one stage at a time."
+          highlight="one stage at a time."
+          intro="Find paid and barter campaigns from verified brands, send your quote, and move the deal forward with clear approvals. No lost DMs, no chasing."
+        />
+        <div class="mt-8 rounded-2xl border border-line bg-ink-2 p-5" data-reveal>
+          <p class="text-sm font-bold text-white">The 20K criteria</p>
+          <p class="mt-1 text-sm leading-relaxed text-mute">To pitch for campaigns, your linked channels need 20,000+ subscribers in total and 20,000+ video views in the last 30 days. It keeps the marketplace valuable for everyone in it.</p>
+        </div>
+      </div>
+      <ol class="relative space-y-4 before:absolute before:bottom-6 before:left-[27px] before:top-6 before:w-px before:bg-gradient-to-b before:from-crimson before:to-transparent">
+        {stages.map((s, i) => (
+          <li class="card relative flex gap-5 p-6" data-reveal>
+            <span class="relative z-10 grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-flame to-crimson font-display text-lg font-black text-white">{i + 1}</span>
+            <div>
+              <h3 class="text-xl font-bold text-white">{s.t}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-mute">{s.d}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- AUTOMATION -->
+  <section id="automation" class="relative py-24 md:py-32">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(139,92,246,0.12),transparent_70%)]"></div>
+    <div class="container-x">
+      <SectionHeading
+        eyebrow="Instagram & YouTube consoles"
+        title="Reply to every comment. Even at 3 a.m."
+        highlight="Even at 3 a.m."
+        intro="Set a keyword once. When someone comments it, the console sends them a private DM with your link, saves them as a lead and tracks the click."
+      />
+      <div class="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+        <FeatureCard icon="message" title="Comment → DM" body="Keyword comments on posts and reels get a private reply with your link, plus an optional public reply." />
+        <FeatureCard icon="bolt" title="Story replies & DMs" body="Replies to stories and keyword DMs trigger the same automation." />
+        <FeatureCard icon="users" title="Leads, saved" body="Everyone who interacts becomes a lead you can search and export as CSV." />
+        <FeatureCard icon="link" title="Tracked links" body="Every link is a tracked link, so you know which post drove the clicks." />
+      </div>
+      <p class="mt-8 text-center text-sm text-mute" data-reveal>Uses Meta’s official APIs. Replies only go to people who commented on or messaged you first. YouTube comments get public replies.</p>
+    </div>
+  </section>
+
+  <!-- SELL -->
+  <section class="relative py-24 md:py-32">
+    <div class="container-x">
+      <div class="grid items-center gap-12 overflow-hidden rounded-[32px] border border-line bg-ink-2 p-8 md:p-14 lg:grid-cols-2" data-reveal>
+        <div>
+          <p class="eyebrow !text-success">Seller workspace</p>
+          <h2 class="mt-4 text-3xl font-extrabold leading-tight text-white md:text-5xl">Turn attention into income.</h2>
+          <p class="mt-4 text-mute md:text-lg">Sell e-books, merch, courses or anything you recommend. Payments, orders and delivery tracking in one dashboard.</p>
+        </div>
+        <ul class="grid gap-3 sm:grid-cols-2" data-reveal-stagger>
+          {[
+            ['store', 'Own products', 'Up to 3 images, price, stock and direct payments.'],
+            ['link', 'Affiliate products', 'Paste a link; title and image fill in for you.'],
+            ['wallet', 'Razorpay checkout', 'UPI, cards and netbanking for your buyers.'],
+            ['flag', 'Orders & tracking', 'Delivery status, tracking IDs and refunds.'],
+          ].map(([icon, t, d]) => (
+            <li class="glass rounded-2xl p-5">
+              <Icon name={icon as any} class="h-6 w-6 text-success" />
+              <p class="mt-3 font-bold text-white">{t}</p>
+              <p class="mt-1 text-sm text-mute">{d}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMUNITY -->
+  <section class="relative py-24 md:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Community" title="A social space where everyone is real." highlight="everyone is real." intro="Post to the feed, share 24-hour stories and reels, chat with other creators and grow your network, in an app where every profile is verified." />
+    </div>
+  </section>
+
+  <section class="relative pb-8">
+    <div class="container-x">
+      <SectionHeading eyebrow="Questions" title="Creator FAQ" />
+      <div class="mt-12"><Faq items={faqs} /></div>
+    </div>
+  </section>
+
+  <CtaBand title="Get verified. Get noticed. Get paid." />
+</Base>

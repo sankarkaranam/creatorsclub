@@ -1,0 +1,34 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+interface Props {
+  icon: IconName;
+  title: string;
+  body: string;
+  tone?: 'crimson' | 'creator' | 'brand' | 'verified' | 'success';
+  points?: string[];
+}
+const { icon, title, body, tone = 'crimson', points } = Astro.props;
+const toneClass = {
+  crimson: 'from-flame/25 to-crimson/10 text-ember',
+  creator: 'from-creator/25 to-creator/5 text-creator',
+  brand: 'from-brand/25 to-brand/5 text-brand',
+  verified: 'from-verified/25 to-verified/5 text-verified',
+  success: 'from-success/25 to-success/5 text-success',
+}[tone];
+---
+<article class="card group h-full p-6 md:p-7">
+  <div class:list={['inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br', toneClass]}>
+    <Icon name={icon} class="h-6 w-6" />
+  </div>
+  <h3 class="mt-5 text-lg font-bold text-white">{title}</h3>
+  <p class="mt-2 text-sm leading-relaxed text-mute">{body}</p>
+  {points && (
+    <ul class="mt-4 space-y-2">
+      {points.map((p) => (
+        <li class="flex gap-2 text-sm text-zinc-300">
+          <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-crimson" />{p}
+        </li>
+      ))}
+    </ul>
+  )}
+</article>

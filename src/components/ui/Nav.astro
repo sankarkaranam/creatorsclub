@@ -1,0 +1,55 @@
+---
+import { NAV, SITE } from '../../lib/site';
+import Logo from './Logo.astro';
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+<header data-nav class="fixed inset-x-0 top-0 z-50 transition-colors duration-300 [&.is-scrolled]:bg-ink/80 [&.is-scrolled]:backdrop-blur-xl [&.is-scrolled]:border-b [&.is-scrolled]:border-line">
+  <div class="container-x flex h-16 items-center justify-between md:h-20">
+    <a href="/" class="flex items-center gap-2.5" aria-label="Creators Club home">
+      <Logo class="h-7 md:h-8" />
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Main">
+      {NAV.map((item) => (
+        <a
+          href={item.href}
+          class:list={[
+            'rounded-full px-4 py-2 text-sm font-medium transition-colors',
+            path === item.href ? 'text-white bg-white/8' : 'text-mute hover:text-white',
+          ]}
+          aria-current={path === item.href ? 'page' : undefined}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+
+    <div class="hidden items-center gap-2 lg:flex">
+      <a href={SITE.loginUrl} class="btn btn-ghost !py-2.5 text-sm">Log in</a>
+      <a href="/get-started" class="btn btn-primary !py-2.5 text-sm">Get started</a>
+    </div>
+
+    <button
+      type="button"
+      class="lg:hidden rounded-full p-2.5 text-paper hover:bg-white/8"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" data-menu class="hidden border-t border-line bg-ink/95 backdrop-blur-xl lg:hidden">
+    <nav class="container-x flex flex-col gap-1 py-4" aria-label="Mobile">
+      {NAV.map((item) => (
+        <a href={item.href} class="rounded-xl px-3 py-3 text-base font-medium text-paper hover:bg-white/6">{item.label}</a>
+      ))}
+      <div class="mt-3 grid grid-cols-2 gap-2">
+        <a href={SITE.loginUrl} class="btn btn-ghost justify-center">Log in</a>
+        <a href="/get-started" class="btn btn-primary justify-center">Get started</a>
+      </div>
+    </nav>
+  </div>
+</header>

@@ -1,0 +1,125 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import FeatureCard from '../components/ui/FeatureCard.astro';
+import CtaBand from '../components/ui/CtaBand.astro';
+import Icon from '../components/ui/Icon.astro';
+import PlatformScene from '../components/three/PlatformScene';
+import { SITE } from '../lib/site';
+
+const products = [
+  {
+    id: 'app',
+    tone: 'text-creator', color: '#a855f7',
+    name: 'Creators Club app',
+    lead: 'The verified social network for creators and brands, on Android.',
+    points: ['Verified creator and brand profiles with showcase', 'Feed, 24-hour stories, reels and co-created posts', 'Brand campaigns, bids and deal stages', 'Chat, network and notifications', 'Biometric and MPIN login'],
+  },
+  {
+    id: 'consoles',
+    tone: 'text-verified', color: '#8b5cf6',
+    name: 'Instagram & YouTube consoles',
+    lead: 'Automations that answer your audience and turn replies into leads.',
+    points: ['Keyword comment → private DM with your link', 'Story replies and keyword DMs', 'YouTube comment auto-replies', 'Leads with CSV export', 'Tracked links, activity and analytics'],
+  },
+  {
+    id: 'store',
+    tone: 'text-success', color: '#00ba7c',
+    name: 'Seller workspace',
+    lead: 'Products, payments and orders for creators who sell.',
+    points: ['Own products with direct payments', 'Affiliate products from any link', 'Razorpay checkout on every product page', 'Order fulfilment with tracking IDs', 'Cancellations with automatic refunds'],
+  },
+];
+---
+<Base title="Platform" description="The Creators Club app, Instagram and YouTube automation consoles, and a seller workspace with Razorpay checkout, all on one verified account.">
+  <section class="relative isolate overflow-hidden pt-28 md:pt-36">
+    <div class="bg-aurora absolute inset-0 -z-10"></div>
+    <div class="container-x pb-10 text-center">
+      <p class="eyebrow" data-reveal>The platform</p>
+      <h1 class="mx-auto mt-5 max-w-4xl text-5xl font-black leading-[1.03] text-white md:text-7xl" data-reveal>
+        Three products. <span class="text-gradient">One verified account.</span>
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-mute" data-reveal>Sign in once and move between the app, the consoles and your store. Scroll to turn the table.</p>
+    </div>
+  </section>
+
+  <!-- PINNED TURNTABLE -->
+  <section id="platform-tour" class="relative h-[360vh]">
+    <div class="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div class="absolute inset-0"><PlatformScene client:only="react" sectionId="platform-tour" /></div>
+      <div class="container-x pointer-events-none relative z-10 flex h-full items-end pb-10 md:items-center md:pb-0">
+        <div class="relative h-[300px] w-full max-w-sm md:h-[360px]">
+          {products.map((p, i) => (
+            <div data-panel={i} class="glass pointer-events-auto absolute inset-x-0 bottom-0 rounded-3xl p-6 opacity-0 transition-all duration-500 md:top-0 md:bottom-auto">
+              <p class="eyebrow" style={`color:${p.color}`}>0{i + 1} / 03</p>
+              <h2 class="mt-3 text-2xl font-extrabold text-white md:text-3xl">{p.name}</h2>
+              <p class="mt-2 text-sm text-mute">{p.lead}</p>
+              <ul class="mt-4 hidden space-y-1.5 md:block">
+                {p.points.map((pt) => <li class="flex gap-2 text-sm text-zinc-300"><Icon name="check" class={`mt-0.5 h-4 w-4 shrink-0 ${p.tone}`} />{pt}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL -->
+  <section class="relative py-24 md:py-32">
+    <div class="container-x space-y-6">
+      {products.map((p, i) => (
+        <div id={p.id} class="card grid scroll-mt-28 gap-8 p-8 md:grid-cols-[1fr_1.2fr] md:p-12" data-reveal>
+          <div>
+            <p class="eyebrow" style={`color:${p.color}`}>0{i + 1}</p>
+            <h2 class="mt-3 text-3xl font-extrabold text-white">{p.name}</h2>
+            <p class="mt-3 text-mute">{p.lead}</p>
+          </div>
+          <ul class="grid gap-3 sm:grid-cols-2">
+            {p.points.map((pt) => <li class="flex gap-2.5 rounded-2xl border border-line bg-white/[0.02] p-4 text-sm text-zinc-200"><Icon name="check" class={`h-5 w-5 shrink-0 ${p.tone}`} />{pt}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- SECURITY -->
+  <section class="relative py-24 md:py-28">
+    <div class="container-x">
+      <SectionHeading
+        eyebrow="Security & privacy"
+        title="Built to protect creators and their audiences."
+        highlight="protect creators"
+        intro="Trust is the product, so the platform treats your data that way."
+      />
+      <div class="mt-16 grid gap-5 md:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+        <FeatureCard icon="lock" title="Encrypted tokens" body="Instagram and YouTube access tokens are encrypted at rest and never sent to the browser." />
+        <FeatureCard icon="shield" title="No raw Aadhaar" body="Only a one-way hash and a masked form are stored after DigiLocker verification." />
+        <FeatureCard icon="badge" title="Signed webhooks" body="Every event from Meta and Razorpay is checked against its signature before we act on it." />
+        <FeatureCard icon="users" title="Single sign-on" body="One Creators Club login opens the app, the dashboard and the consoles." />
+      </div>
+      <p class="mt-10 text-center text-sm text-mute" data-reveal>Read our <a href="/privacy" class="text-white underline decoration-crimson underline-offset-4">privacy policy</a> for the details.</p>
+    </div>
+  </section>
+
+  <CtaBand title="Open your account in minutes." />
+</Base>
+
+<script>
+  // Show the product panel that matches the turntable position.
+  const section = document.getElementById('platform-tour');
+  const panels = Array.from(document.querySelectorAll<HTMLElement>('[data-panel]'));
+  const update = () => {
+    if (!section) return;
+    const r = section.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, -r.top / Math.max(1, r.height - window.innerHeight)));
+    const active = Math.min(panels.length - 1, Math.round(p * (panels.length - 1)));
+    panels.forEach((el, i) => {
+      el.style.opacity = i === active ? '1' : '0';
+      el.style.transform = i === active ? 'none' : 'translateY(16px)';
+      el.setAttribute('aria-hidden', String(i !== active));
+    });
+  };
+  update();
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+</script>

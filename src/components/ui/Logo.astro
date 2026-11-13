@@ -1,0 +1,12 @@
+---
+interface Props { class?: string; mark?: boolean }
+const { class: cls = 'h-8', mark = false } = Astro.props;
+---
+<span class:list={['inline-flex items-center gap-2.5', cls]}>
+  <img src="/brand/cc-icon-on-dark.svg" alt="" width="68" height="40" class="h-full w-auto" />
+  {!mark && (
+    <span class="font-display text-[1.15em] font-extrabold leading-none tracking-tight">
+      Creators<span class="text-crimson">Club</span>
+    </span>
+  )}
+</span>

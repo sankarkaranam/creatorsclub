@@ -1,4 +1,7 @@
-# Ignore local projects outside CreatorsClub
-Orumind/
+node_modules/
+dist/
+.astro/
+.wrangler/
 .DS_Store
-Thumbs.db
+.env*
+!.env.example

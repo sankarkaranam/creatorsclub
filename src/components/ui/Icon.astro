@@ -1,0 +1,38 @@
+---
+/** Small inline icon set (stroke icons, 24px grid). */
+export type IconName =
+  | 'shield' | 'check' | 'handshake' | 'chart' | 'message' | 'bolt' | 'store' | 'users' | 'search'
+  | 'megaphone' | 'link' | 'lock' | 'phone' | 'layout' | 'globe' | 'sparkles' | 'badge' | 'wallet'
+  | 'arrow' | 'play' | 'flag' | 'target' | 'eye' | 'layers';
+interface Props { name: IconName; class?: string }
+const { name, class: cls = 'h-5 w-5' } = Astro.props;
+const paths: Record<IconName, string> = {
+  shield: 'M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3z M9 12l2 2 4-4',
+  check: 'M5 12l4 4L19 7',
+  handshake: 'M3 12l4-4 4 3 3-3 4 4 3-1 M7 8l-4 6 5 4 2-1 M14 8l4 2 3 4-6 5-2-1 M10 17l2 1 2-1',
+  chart: 'M4 19V5 M4 19h16 M8 15l3-4 3 2 5-6',
+  message: 'M4 5h16v11H9l-5 4V5z M8 10h8 M8 13h5',
+  bolt: 'M13 3L5 14h6l-1 7 8-11h-6l1-7z',
+  store: 'M4 9l1-5h14l1 5 M4 9v11h16V9 M4 9h16 M9 20v-6h6v6',
+  users: 'M9 11a4 4 0 100-8 4 4 0 000 8z M2 21c0-4 3-6 7-6s7 2 7 6 M17 11a3 3 0 100-6 M22 21c0-3-2-5-5-5.5',
+  search: 'M11 18a7 7 0 100-14 7 7 0 000 14z M21 21l-5-5',
+  megaphone: 'M3 10v4l11 5V5L3 10z M14 8a4 4 0 010 8 M6 15l1 5h3l-1-4',
+  link: 'M10 14a4 4 0 006 0l3-3a4 4 0 00-6-6l-1 1 M14 10a4 4 0 00-6 0l-3 3a4 4 0 006 6l1-1',
+  lock: 'M6 11h12v10H6z M8 11V8a4 4 0 018 0v3',
+  phone: 'M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z M11 18h2',
+  layout: 'M3 4h18v16H3z M3 9h18 M9 9v11',
+  globe: 'M12 21a9 9 0 100-18 9 9 0 000 18z M3 12h18 M12 3c3 3 3 15 0 18 M12 3c-3 3-3 15 0 18',
+  sparkles: 'M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2 2-5z M19 15l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2z',
+  badge: 'M12 2l2.5 2 3-.5 1 3 2.5 2-1.5 2.5 1.5 2.5-2.5 2-1 3-3-.5L12 22l-2.5-2-3 .5-1-3L3 15.5 4.5 13 3 10.5l2.5-2 1-3 3 .5L12 2z M8.5 12l2.5 2.5 4.5-5',
+  wallet: 'M3 7h16a2 2 0 012 2v9a2 2 0 01-2 2H3V7z M3 7l12-4 2 4 M16 13h2',
+  arrow: 'M5 12h14 M13 6l6 6-6 6',
+  play: 'M7 4l13 8-13 8V4z',
+  flag: 'M5 21V4 M5 4h11l-2 4 2 4H5',
+  target: 'M12 21a9 9 0 100-18 9 9 0 000 18z M12 16a4 4 0 100-8 4 4 0 000 8z M12 12h.01',
+  eye: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z M12 15a3 3 0 100-6 3 3 0 000 6z',
+  layers: 'M12 3l9 5-9 5-9-5 9-5z M3 13l9 5 9-5 M3 17l9 5 9-5',
+};
+---
+<svg class={cls} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+  {paths[name].split(' M').map((d, i) => <path d={i === 0 ? d : `M${d}`} />)}
+</svg>

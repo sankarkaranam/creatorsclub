@@ -1,0 +1,238 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import FeatureCard from '../components/ui/FeatureCard.astro';
+import CtaBand from '../components/ui/CtaBand.astro';
+import Faq from '../components/ui/Faq.astro';
+import Icon from '../components/ui/Icon.astro';
+import HeroScene from '../components/three/HeroScene';
+import { SITE } from '../lib/site';
+
+const pillars = [
+  { icon: 'shield', title: 'Identity verified', body: 'Every creator completes DigiLocker e-KYC. No bots, no impersonators.' },
+  { icon: 'badge', title: 'Real audience numbers', body: 'Reach comes from linked YouTube and Instagram channels, never typed in.' },
+  { icon: 'flag', title: 'Deals tracked', body: 'Pitch, script, draft and live link, approved stage by stage.' },
+  { icon: 'wallet', title: 'Payments built in', body: 'Sell your own products with Razorpay checkout and order tracking.' },
+] as const;
+
+const problems = [
+  {
+    pain: 'Fake followers and inflated numbers',
+    fix: 'Audience figures come straight from the creator’s connected channels. If it isn’t verified, it isn’t shown.',
+  },
+  {
+    pain: 'Unknown brands and unpaid work',
+    fix: 'Brands verify their business with PAN or GSTIN before they can post a campaign.',
+  },
+  {
+    pain: 'Deals lost in DMs and spreadsheets',
+    fix: 'Every collaboration moves through clear stages, with approvals and a shared timeline.',
+  },
+  {
+    pain: 'Five tools to run one creator business',
+    fix: 'Profile, brand deals, Instagram and YouTube automation and your own store live in one account.',
+  },
+];
+
+const steps = [
+  { n: '01', title: 'Verify', body: 'Creators verify identity with DigiLocker; brands verify their business with PAN or GSTIN.' },
+  { n: '02', title: 'Connect', body: 'Link YouTube and Instagram so your real reach shows on your profile.' },
+  { n: '03', title: 'Collaborate', body: 'Brands post campaigns and invite creators; creators pitch with a quote.' },
+  { n: '04', title: 'Deliver & grow', body: 'Ship the script, draft and live link, automate replies, and sell to your audience.' },
+];
+
+const faqs = [
+  {
+    q: 'Who is Creators Club for?',
+    a: 'Content creators who want verified brand deals and better tools, and brands that want to work with creators whose identity and audience are real.',
+  },
+  {
+    q: 'How does verification work?',
+    a: 'Creators verify their identity with Aadhaar e-KYC through DigiLocker. We never store your Aadhaar number: only a one-way hash and a masked form. Brands verify their business with PAN or GSTIN.',
+  },
+  {
+    q: 'What are the 20K criteria?',
+    a: 'To pitch for brand campaigns, a creator’s linked channels need at least 20,000 subscribers in total and at least 20,000 video views in the last 30 days. You can join, build your profile and use the other tools before you get there.',
+  },
+  {
+    q: 'Does the Instagram automation follow Meta’s rules?',
+    a: 'Yes. Replies go only to people who commented on or messaged your account first, through Meta’s official APIs, within the limits Instagram allows.',
+  },
+  {
+    q: 'How much does it cost?',
+    a: 'You can join and get started for free. When paid plans launch, they will be listed here before anything is charged.',
+  },
+];
+---
+<Base>
+  <!-- HERO -->
+  <section id="hero" class="relative isolate min-h-[100svh] overflow-hidden pt-24 md:pt-28">
+    <div class="bg-aurora absolute inset-0 -z-20"></div>
+    <div class="grain absolute inset-0 -z-10"></div>
+    <div class="container-x relative grid min-h-[calc(100svh-7rem)] items-center">
+      <div class="relative z-10 max-w-[640px] py-8">
+        <p class="eyebrow" data-reveal><span class="h-1.5 w-1.5 animate-pulse rounded-full bg-crimson"></span>India’s verified creator–brand network</p>
+        <h1 class="mt-5 text-[2.6rem] font-black leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-7xl" data-reveal>
+          Where <span class="text-gradient">verified creators</span> and real brands build together.
+        </h1>
+        <p class="mt-6 max-w-xl text-lg leading-relaxed text-mute md:text-xl" data-reveal>
+          Verified identities, real audience numbers, tracked brand deals, Instagram and YouTube automation, and your own store. One home for the business of creating.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3" data-reveal>
+          <a href="/creators" class="btn btn-primary">I’m a creator <Icon name="arrow" class="h-4 w-4" /></a>
+          <a href="/brands" class="btn btn-ghost">I’m a brand <Icon name="arrow" class="h-4 w-4" /></a>
+        </div>
+        <p class="mt-6 text-sm text-mute" data-reveal>Already a member? <a href={SITE.loginUrl} class="font-semibold text-white underline decoration-crimson underline-offset-4">Log in</a></p>
+      </div>
+    </div>
+    <div class="relative h-[480px] sm:h-[560px] lg:absolute lg:inset-0 lg:h-auto">
+      <HeroScene client:only="react" />
+    </div>
+    <div class="pointer-events-none absolute inset-x-0 bottom-6 hidden justify-center md:flex" aria-hidden="true">
+      <div class="flex h-10 w-6 justify-center rounded-full border border-white/20 pt-2"><span class="h-2 w-1 animate-bounce rounded-full bg-white/60"></span></div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="relative border-y border-line bg-ink-2/60">
+    <div class="container-x grid gap-px py-2 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+      {pillars.map((p) => (
+        <div class="flex gap-4 px-2 py-7 sm:px-6">
+          <Icon name={p.icon} class="h-7 w-7 shrink-0 text-crimson" />
+          <div>
+            <h3 class="font-bold text-white">{p.title}</h3>
+            <p class="mt-1 text-sm leading-relaxed text-mute">{p.body}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- PROBLEM / SOLUTION -->
+  <section class="relative py-24 md:py-32">
+    <div class="container-x">
+      <SectionHeading
+        eyebrow="Why it matters"
+        title="The creator economy runs on trust. Most platforms never check."
+        highlight="runs on trust."
+        intro="Brands lose money on fake reach. Creators lose time on brands that never pay. Creators Club checks both sides first, so every collaboration starts from real."
+      />
+      <div class="mt-16 grid gap-5 md:grid-cols-2" data-reveal-stagger>
+        {problems.map((p) => (
+          <div class="card relative overflow-hidden p-7">
+            <p class="flex items-center gap-2 text-sm font-semibold text-zinc-400"><span class="grid h-6 w-6 place-items-center rounded-full bg-white/5 text-xs">✕</span>{p.pain}</p>
+            <p class="mt-4 flex gap-3 text-lg font-semibold leading-snug text-white">
+              <span class="mt-0.5 grid h-7 w-7 shrink-0 place-items-center rounded-full bg-gradient-to-br from-flame to-crimson text-sm">✓</span>{p.fix}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO PATHS -->
+  <section class="relative py-24 md:py-32">
+    <div class="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_50%,rgba(229,57,53,0.10),transparent_70%)]"></div>
+    <div class="container-x">
+      <SectionHeading eyebrow="Built for both sides" title="One network. Two ways to win." highlight="Two ways to win." />
+      <div class="mt-16 grid gap-6 lg:grid-cols-2">
+        <a href="/creators" class="card group relative block overflow-hidden p-8 md:p-10" data-reveal>
+          <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-creator/25 blur-3xl transition-opacity group-hover:opacity-80"></div>
+          <p class="eyebrow !text-creator">For creators</p>
+          <h3 class="mt-4 text-3xl font-extrabold text-white">Turn your audience into a business.</h3>
+          <ul class="mt-6 space-y-3 text-zinc-300">
+            <li class="flex gap-3"><Icon name="badge" class="h-5 w-5 shrink-0 text-creator" />A verified profile brands can trust at a glance</li>
+            <li class="flex gap-3"><Icon name="handshake" class="h-5 w-5 shrink-0 text-creator" />Pitch for paid and barter campaigns from verified brands</li>
+            <li class="flex gap-3"><Icon name="message" class="h-5 w-5 shrink-0 text-creator" />Auto-reply to comments and DMs, and capture every lead</li>
+            <li class="flex gap-3"><Icon name="store" class="h-5 w-5 shrink-0 text-creator" />Sell your own and affiliate products with built-in checkout</li>
+          </ul>
+          <span class="mt-8 inline-flex items-center gap-2 font-display font-bold text-white">Explore creator tools <Icon name="arrow" class="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+        </a>
+        <a href="/brands" class="card group relative block overflow-hidden p-8 md:p-10" data-reveal>
+          <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-brand/25 blur-3xl transition-opacity group-hover:opacity-80"></div>
+          <p class="eyebrow !text-brand">For brands</p>
+          <h3 class="mt-4 text-3xl font-extrabold text-white">Spend on reach that’s real.</h3>
+          <ul class="mt-6 space-y-3 text-zinc-300">
+            <li class="flex gap-3"><Icon name="search" class="h-5 w-5 shrink-0 text-brand" />Find verified creators by category and real audience</li>
+            <li class="flex gap-3"><Icon name="megaphone" class="h-5 w-5 shrink-0 text-brand" />Post campaigns, invite creators and compare their bids</li>
+            <li class="flex gap-3"><Icon name="flag" class="h-5 w-5 shrink-0 text-brand" />Approve every stage, from script to live link</li>
+            <li class="flex gap-3"><Icon name="shield" class="h-5 w-5 shrink-0 text-brand" />Work only with identity-checked creators</li>
+          </ul>
+          <span class="mt-8 inline-flex items-center gap-2 font-display font-bold text-white">See how brands use it <Icon name="arrow" class="h-4 w-4 transition-transform group-hover:translate-x-1" /></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLATFORM TRIO -->
+  <section class="relative py-24 md:py-32">
+    <div class="container-x">
+      <SectionHeading
+        eyebrow="The platform"
+        title="Three products. One login."
+        highlight="One login."
+        intro="Everything a creator business needs, connected: the community app, automation consoles, and a store that takes payments."
+      />
+      <div class="mt-16 grid gap-5 md:grid-cols-3" data-reveal-stagger>
+        <FeatureCard icon="phone" title="Creators Club app" body="Your verified profile, feed, stories, reels, chat, network and brand campaigns, on Android." points={['Verified creator and brand profiles', 'Campaigns, bids and deal stages', 'Messages and notifications']} />
+        <FeatureCard icon="bolt" tone="verified" title="Instagram & YouTube consoles" body="Keyword automations that reply for you, then turn every reply into a lead." points={['Comment → private DM with your link', 'Leads with CSV export', 'Tracked links and analytics']} />
+        <FeatureCard icon="store" tone="success" title="Seller workspace" body="Add products, take payments and fulfil orders from one dashboard." points={['Own and affiliate products', 'Razorpay checkout', 'Orders, tracking and refunds']} />
+      </div>
+      <div class="mt-10 text-center" data-reveal>
+        <a href="/platform" class="btn btn-ghost">Tour the platform <Icon name="arrow" class="h-4 w-4" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="relative py-24 md:py-32">
+    <div class="container-x">
+      <SectionHeading eyebrow="How it works" title="From sign-up to live campaign in four steps." highlight="four steps." />
+      <ol class="relative mt-16 grid gap-6 md:grid-cols-4" data-reveal-stagger>
+        {steps.map((s) => (
+          <li class="card relative p-7">
+            <span class="font-display text-5xl font-black text-gradient">{s.n}</span>
+            <h3 class="mt-4 text-xl font-bold text-white">{s.title}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-mute">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <!-- MADE FOR INDIA -->
+  <section class="relative py-24 md:py-28">
+    <div class="container-x">
+      <div class="grid items-center gap-12 overflow-hidden rounded-[32px] border border-line bg-ink-2 p-8 md:grid-cols-2 md:p-14" data-reveal>
+        <div>
+          <p class="eyebrow">Made for India</p>
+          <h2 class="mt-4 text-3xl font-extrabold leading-tight text-white md:text-4xl">Built around how Indian creators actually work.</h2>
+          <p class="mt-4 text-mute">DigiLocker for identity, PAN and GSTIN for businesses, Razorpay and UPI for payments,, built by a team in Hyderabad.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          {[
+            ['DigiLocker e-KYC', 'shield'],
+            ['PAN & GSTIN checks', 'badge'],
+            ['Razorpay & UPI', 'wallet'],
+            ['YouTube & Instagram', 'play'],
+          ].map(([label, icon]) => (
+            <div class="glass flex items-center gap-3 rounded-2xl p-4">
+              <Icon name={icon as any} class="h-6 w-6 text-ember" />
+              <span class="text-sm font-semibold text-white">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="relative py-24 md:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="Questions" title="Good to know" />
+      <div class="mt-12"><Faq items={faqs} /></div>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>

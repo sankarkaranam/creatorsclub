@@ -1,0 +1,26 @@
+---
+import { SITE } from '../../lib/site';
+interface Props { title?: string; body?: string }
+const {
+  title = 'Your next collaboration starts here.',
+  body = 'Join a network where every creator is verified, every brand is real, and every deal is tracked from first pitch to final payout.',
+} = Astro.props;
+---
+<section class="relative py-24">
+  <div class="container-x">
+    <div class="relative overflow-hidden rounded-[32px] border border-crimson/30 p-10 md:p-16" data-reveal>
+      <div class="absolute inset-0 -z-10 bg-[radial-gradient(80%_120%_at_0%_0%,rgba(255,87,34,0.35),transparent_60%),radial-gradient(80%_120%_at_100%_100%,rgba(229,57,53,0.35),transparent_60%)]"></div>
+      <div class="absolute inset-0 -z-10 bg-ink-2/70"></div>
+      <div class="grid items-center gap-8 md:grid-cols-[1.5fr_1fr]">
+        <div>
+          <h2 class="text-3xl font-extrabold leading-tight text-white md:text-5xl">{title}</h2>
+          <p class="mt-4 max-w-xl text-mute md:text-lg">{body}</p>
+        </div>
+        <div class="flex flex-wrap gap-3 md:justify-end">
+          <a href="/get-started" class="btn btn-primary">Get started <span aria-hidden="true">→</span></a>
+          <a href={SITE.loginUrl} class="btn btn-ghost">Log in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

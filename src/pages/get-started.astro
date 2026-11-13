@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/ui/Icon.astro';
+import { SITE } from '../lib/site';
+---
+<Base title="Get started" description="Join Creators Club as a creator or a brand.">
+  <section class="relative isolate min-h-[90svh] overflow-hidden pt-32 pb-20">
+    <div class="bg-aurora absolute inset-0 -z-10"></div>
+    <div class="container-x">
+      <div class="text-center">
+        <p class="eyebrow" data-reveal>Get started</p>
+        <h1 class="mt-5 text-4xl font-black text-white md:text-6xl" data-reveal>Who are you joining as?</h1>
+      </div>
+      <div class="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-2">
+        <div class="card relative overflow-hidden p-8 md:p-10" data-reveal>
+          <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-creator/25 blur-3xl"></div>
+          <Icon name="sparkles" class="h-10 w-10 text-creator" />
+          <h2 class="mt-5 text-3xl font-extrabold text-white">I’m a creator</h2>
+          <ol class="mt-5 space-y-2.5 text-sm text-zinc-300">
+            <li>1. Get the Creators Club app and create your account</li>
+            <li>2. Verify your identity with DigiLocker</li>
+            <li>3. Link YouTube and Instagram, pick your categories</li>
+          </ol>
+          <div class="mt-8 flex flex-wrap gap-3">
+            {SITE.playStoreUrl
+              ? <a href={SITE.playStoreUrl} class="btn btn-primary" rel="noopener">Get it on Google Play</a>
+              : <span class="btn btn-ghost cursor-default opacity-80">Android app: coming to Google Play</span>}
+            <a href={SITE.loginUrl} class="btn btn-ghost">Log in to dashboard</a>
+          </div>
+        </div>
+        <div class="card relative overflow-hidden p-8 md:p-10" data-reveal>
+          <div class="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-brand/25 blur-3xl"></div>
+          <Icon name="megaphone" class="h-10 w-10 text-brand" />
+          <h2 class="mt-5 text-3xl font-extrabold text-white">I’m a brand</h2>
+          <ol class="mt-5 space-y-2.5 text-sm text-zinc-300">
+            <li>1. Create your brand account</li>
+            <li>2. Verify your business with PAN or GSTIN</li>
+            <li>3. Publish your first campaign and invite creators</li>
+          </ol>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="/contact?role=brand" class="btn btn-primary">Talk to us <Icon name="arrow" class="h-4 w-4" /></a>
+            <a href={SITE.loginUrl} class="btn btn-ghost">Log in</a>
+          </div>
+        </div>
+      </div>
+      <p class="mt-10 text-center text-sm text-mute" data-reveal>Free to join. Paid plans, when they launch, will be listed before anything is charged.</p>
+    </div>
+  </section>
+</Base>

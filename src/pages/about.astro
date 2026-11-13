@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import FeatureCard from '../components/ui/FeatureCard.astro';
+import CtaBand from '../components/ui/CtaBand.astro';
+import ParticleField from '../components/three/ParticleField';
+import { SITE } from '../lib/site';
+---
+<Base title="About" description="Creators Club is built by ORUMIND in Hyderabad to give India’s creators and brands a network where trust is checked, not assumed.">
+  <section class="relative isolate flex min-h-[88svh] items-center overflow-hidden pt-24">
+    <div class="absolute inset-0 -z-10 opacity-90"><ParticleField client:only="react" /></div>
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-ink/30 via-transparent to-ink"></div>
+    <div class="container-x text-center">
+      <p class="eyebrow" data-reveal>About Creators Club</p>
+      <h1 class="mx-auto mt-5 max-w-4xl text-5xl font-black leading-[1.03] text-white md:text-7xl" data-reveal>
+        Building the <span class="text-gradient">trust layer</span> of India’s creator economy.
+      </h1>
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-mute" data-reveal>
+        {SITE.tagline} Creators Club is a product of {SITE.company}, built in Hyderabad.
+      </p>
+    </div>
+  </section>
+
+  <section class="relative py-24 md:py-32">
+    <div class="container-x grid gap-14 lg:grid-cols-2">
+      <div data-reveal>
+        <p class="eyebrow">Why we started</p>
+        <h2 class="mt-4 text-3xl font-extrabold leading-tight text-white md:text-5xl">Talent was never the problem. Trust was.</h2>
+      </div>
+      <div class="space-y-5 text-lg leading-relaxed text-zinc-300" data-reveal>
+        <p>India has millions of people creating every day, and thousands of brands that want to work with them. Yet the deals between them still run on screenshots, guesswork and blind faith.</p>
+        <p>Brands can’t tell real reach from bought followers. Creators can’t tell a real offer from a scam. Everyone loses time, money and confidence.</p>
+        <p>Creators Club fixes the foundation first: verify who everyone is, show audience numbers straight from the source, and put every deal on a clear, shared track. Then give creators the tools to grow on top of it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="relative py-24 md:py-28">
+    <div class="container-x">
+      <SectionHeading eyebrow="What we believe" title="Our principles" />
+      <div class="mt-16 grid gap-5 md:grid-cols-3" data-reveal-stagger>
+        <FeatureCard icon="shield" title="Real data only" body="If a number can’t be verified at the source, we don’t show it. No estimates, no inflated stats." />
+        <FeatureCard icon="handshake" tone="verified" title="Fair to both sides" body="Creators and brands are both verified, and both approve each step of a deal." />
+        <FeatureCard icon="globe" tone="success" title="Made for India" body="DigiLocker, PAN and GSTIN, UPI and Razorpay: built on the systems Indian creators and businesses already use." />
+      </div>
+    </div>
+  </section>
+
+  <CtaBand title="Be part of what we’re building." />
+</Base>

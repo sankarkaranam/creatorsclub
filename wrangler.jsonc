@@ -1,0 +1,26 @@
+// Cloudflare Worker "creatorsclub" serves creatorsclub.co.in.
+// Deployed by Cloudflare Workers Builds on every push to main (build command: npm ci && npm run build).
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "creatorsclub",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-11-01",
+  // Workers Builds runs `wrangler deploy` (production) or `wrangler versions upload` (other branches);
+  // this builds the Astro site into ./dist first.
+  "build": { "command": "npm run build", "watch_dir": "src" },
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": { "enabled": true },
+  // Contact form storage. Create once with:
+  //   npx wrangler d1 create creatorsclub-site
+  //   npx wrangler d1 migrations apply creatorsclub-site --remote
+  // then put the printed database_id below and uncomment.
+  // "d1_databases": [
+  //   { "binding": "DB", "database_name": "creatorsclub-site", "database_id": "<id>", "migrations_dir": "migrations" }
+  // ]
+}
