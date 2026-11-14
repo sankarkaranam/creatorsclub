@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Creators Club: creator invite (1080x1920)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Roboto:wght@400;500;700&display=block" rel="stylesheet" />
+<style>
+  :root { --ink:#0e0e10; --ink2:#16161b; --crimson:#e53935; --flame:#ff5722; --ember:#ff8a4c; --paper:#f5f5f7; --mute:#a1a1aa; --violet:#8b5cf6; --creator:#a855f7; --brand:#3b82f6; --ok:#00ba7c; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1080px; height:1920px; overflow:hidden; background:var(--ink); color:var(--paper); font-family:Roboto, sans-serif; }
+  #gl { position:absolute; inset:0; width:1080px; height:1920px; }
+  .glow { position:absolute; border-radius:50%; filter:blur(10px); pointer-events:none; }
+  .g1 { width:1300px; height:1300px; left:-500px; top:-500px; background:radial-gradient(circle, rgba(255,87,34,.32), transparent 62%); }
+  .g2 { width:1300px; height:1300px; right:-550px; bottom:-450px; background:radial-gradient(circle, rgba(229,57,53,.30), transparent 62%); }
+  .g3 { width:900px; height:900px; left:90px; top:900px; background:radial-gradient(circle, rgba(139,92,246,.16), transparent 65%); }
+  .grain { position:absolute; inset:0; opacity:.07; pointer-events:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .scene { position:absolute; inset:0; padding:0 80px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; opacity:0; }
+  .eyebrow { font:800 30px Montserrat; letter-spacing:.2em; text-transform:uppercase; color:var(--ember); display:flex; align-items:center; gap:16px; }
+  .eyebrow i { width:14px; height:14px; border-radius:50%; background:var(--crimson); display:inline-block; }
+  h1 { font:900 112px/1.02 Montserrat; letter-spacing:-3px; color:#fff; }
+  h2 { font:900 96px/1.04 Montserrat; letter-spacing:-2.5px; color:#fff; }
+  .grad { background:linear-gradient(100deg, var(--flame), var(--crimson) 55%, #ff6b6b); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sub { font:400 40px/1.45 Roboto; color:#c9c9d1; margin-top:34px; max-width:880px; }
+  .word { display:inline-block; }
+  .card { background:linear-gradient(180deg, rgba(34,34,40,.92), rgba(22,22,27,.92)); border:2px solid rgba(255,255,255,.09); border-radius:44px; box-shadow:0 40px 120px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.02) inset; text-align:left; }
+  .row { display:flex; align-items:center; gap:24px; }
+  .pill { border-radius:999px; padding:12px 26px; font:700 28px Montserrat; }
+  .check { width:58px; height:58px; border-radius:50%; display:grid; place-items:center; font:900 32px Montserrat; color:#fff; background:linear-gradient(135deg, var(--flame), var(--crimson)); flex:none; }
+  .muted { color:var(--mute); }
+  /* S2 */
+  .bots { display:flex; gap:26px; margin-top:70px; }
+  .bot { width:140px; height:140px; border-radius:50%; background:#1f1f25; border:3px dashed #5a5a66; display:grid; place-items:center; font:900 34px Montserrat; color:#8a8a96; letter-spacing:.04em; }
+  .qmark { font:900 300px Montserrat; line-height:1; }
+  /* S3 profile */
+  .profile { width:880px; padding:56px; margin-top:70px; }
+  .avatar { width:150px; height:150px; border-radius:50%; background:linear-gradient(135deg, var(--creator), var(--crimson)); flex:none; }
+  .vbadge { margin-left:auto; background:rgba(139,92,246,.22); color:#d6c8ff; border:2px solid rgba(139,92,246,.6); }
+  .ck { display:flex; align-items:center; gap:22px; font:500 38px Roboto; color:#e4e4e7; margin-top:30px; }
+  .ck b { width:52px; height:52px; border-radius:50%; background:rgba(0,186,124,.18); color:#5eead4; display:grid; place-items:center; font:900 28px Montserrat; flex:none; }
+  /* S4 campaign */
+  .campaign { width:880px; padding:56px; margin-top:70px; }
+  .stages { display:flex; gap:16px; margin-top:44px; }
+  .stage { flex:1; text-align:center; border-radius:22px; padding:22px 0; font:800 28px Montserrat; background:rgba(255,255,255,.05); color:#71717a; border:2px solid transparent; }
+  .stage.on { background:rgba(0,186,124,.16); color:#5eead4; border-color:rgba(0,186,124,.45); }
+  .bar { height:14px; border-radius:99px; background:rgba(255,255,255,.08); margin-top:34px; overflow:hidden; }
+  .bar > div { height:100%; width:0; border-radius:99px; background:linear-gradient(90deg, var(--flame), var(--crimson)); }
+  /* S5 phone */
+  .phone { width:560px; height:1000px; margin-top:60px; border-radius:76px; padding:26px; background:linear-gradient(160deg, #2a2a31, #111114); border:3px solid rgba(229,57,53,.55); box-shadow:0 60px 160px -40px rgba(229,57,53,.55); }
+  .screen { width:100%; height:100%; border-radius:54px; background:#0a0a0c; padding:40px 30px; display:flex; flex-direction:column; gap:26px; text-align:left; overflow:hidden; }
+  .bubble { max-width:82%; border-radius:34px; padding:22px 28px; font:500 31px/1.35 Roboto; }
+  .them { background:rgba(255,255,255,.08); border-top-left-radius:10px; }
+  .you { margin-left:auto; background:linear-gradient(100deg, var(--flame), var(--crimson)); border-top-right-radius:10px; color:#fff; font-weight:700; }
+  .meta { font:400 22px Roboto; color:#71717a; margin-top:-14px; }
+  .prod { margin-left:auto; width:78%; border-radius:30px; overflow:hidden; border:2px solid rgba(255,255,255,.1); background:rgba(255,255,255,.05); }
+  .lead { border-radius:26px; padding:20px 26px; font:700 28px Montserrat; color:#5eead4; background:rgba(0,186,124,.12); border:2px solid rgba(0,186,124,.35); }
+  /* S6 orders */
+  .orders { width:860px; margin-top:70px; position:relative; height:640px; }
+  .order { position:absolute; left:0; right:0; padding:40px 48px; }
+  .paid { background:rgba(0,186,124,.18); color:#5eead4; }
+  /* S7 CTA */
+  .cta { margin-top:56px; display:inline-flex; align-items:center; gap:18px; border-radius:999px; padding:34px 64px; font:900 46px Montserrat; color:#fff; background:linear-gradient(100deg, var(--flame), var(--crimson)); box-shadow:0 30px 90px -20px rgba(229,57,53,.85); }
+  .url { margin-top:44px; font:800 52px Montserrat; letter-spacing:-1px; }
+  .tagline { margin-top:26px; font:600 27px Montserrat; letter-spacing:.2em; color:var(--mute); text-transform:uppercase; }
+  .brandmark { font:900 70px Montserrat; letter-spacing:-2px; }
+</style>
+</head>
+<body>
+  <div class="glow g1"></div><div class="glow g2"></div><div class="glow g3"></div>
+  <canvas id="gl"></canvas>
+  <div class="grain"></div>
+
+  <!-- S1: hook (logo is in the 3D layer above the text) -->
+  <section class="scene" id="s1" style="justify-content:flex-end; padding-bottom:380px">
+    <p class="eyebrow"><i></i>Creators</p>
+    <h1 style="margin-top:34px"><span class="word">Your</span> <span class="word">audience</span> <span class="word">is</span> <span class="word grad">real.</span></h1>
+  </section>
+
+  <!-- S2: problem -->
+  <section class="scene" id="s2">
+    <div class="qmark grad">?</div>
+    <h2 style="margin-top:20px">But brands <span class="grad">can’t tell.</span></h2>
+    <div class="bots"><div class="bot">BOT</div><div class="bot">BOT</div><div class="bot">BOT</div><div class="bot">BOT</div><div class="bot">BOT</div></div>
+    <p class="sub">Fake followers made every brand careful. Real creators pay the price.</p>
+  </section>
+
+  <!-- S3: verified -->
+  <section class="scene" id="s3">
+    <p class="eyebrow"><i></i>Step 1</p>
+    <h2 style="margin-top:26px">Get <span class="grad">verified</span> once.</h2>
+    <div class="card profile">
+      <div class="row">
+        <div class="avatar"></div>
+        <div><p style="font:800 46px Montserrat">Your profile</p><p class="muted" style="font:400 32px Roboto; margin-top:6px">Food &amp; travel creator</p></div>
+        <span class="pill vbadge" id="vbadge">✓ Verified</span>
+      </div>
+      <div class="ck"><b>✓</b>Identity via DigiLocker e-KYC</div>
+      <div class="ck"><b>✓</b>YouTube channel linked</div>
+      <div class="ck"><b>✓</b>Instagram account linked</div>
+      <div class="ck"><b>✓</b>Audience from your real channels</div>
+    </div>
+  </section>
+
+  <!-- S4: brand deals -->
+  <section class="scene" id="s4">
+    <p class="eyebrow"><i></i>Step 2</p>
+    <h2 style="margin-top:26px">Win deals from <span class="grad">verified brands.</span></h2>
+    <div class="card campaign">
+      <p style="font:800 26px Montserrat; letter-spacing:.18em; color:#60a5fa">BRAND CAMPAIGN · PAID</p>
+      <p style="font:900 56px/1.1 Montserrat; margin-top:16px">Festive launch reel</p>
+      <p class="muted" style="font:400 32px Roboto; margin-top:12px">Verified brand · approves every stage</p>
+      <div class="stages"><div class="stage">Pitch</div><div class="stage">Script</div><div class="stage">Draft</div><div class="stage">Live</div></div>
+      <div class="bar"><div></div></div>
+    </div>
+  </section>
+
+  <!-- S5: automation -->
+  <section class="scene" id="s5" style="justify-content:flex-start; padding-top:170px">
+    <p class="eyebrow"><i></i>Step 3</p>
+    <h2 style="margin-top:22px; font-size:84px">Reply to every comment. <span class="grad">Automatically.</span></h2>
+    <div class="phone"><div class="screen">
+      <div class="row" style="gap:18px; padding-bottom:18px; border-bottom:2px solid rgba(255,255,255,.08)"><div style="width:62px;height:62px;border-radius:50%;background:linear-gradient(135deg,#ff5722,#e53935)"></div><div><p style="font:800 30px Montserrat">your.channel</p><p class="muted" style="font:400 22px Roboto">Instagram · Creators Club console</p></div></div>
+      <div class="bubble them c1">Love this! Send me the <b>LINK</b> 🙏</div><p class="meta c1">@a.follower commented</p>
+      <div class="bubble you c2">Here’s your link! 🔗</div><p class="meta c2" style="text-align:right">Auto-reply · private DM</p>
+      <div class="prod c3"><div style="height:150px;background:linear-gradient(135deg,rgba(255,87,34,.6),rgba(168,85,247,.45))"></div><p style="font:800 30px Montserrat;padding:18px 24px 4px">Recipe e-book</p><p class="muted" style="font:400 22px Roboto;padding:0 24px 20px">Tap to buy · Razorpay</p></div>
+      <div class="lead c4">✓ New lead saved</div>
+    </div></div>
+  </section>
+
+  <!-- S6: sell -->
+  <section class="scene" id="s6">
+    <p class="eyebrow"><i></i>Step 4</p>
+    <h2 style="margin-top:26px">Sell to <span class="grad">your audience.</span></h2>
+    <div class="orders">
+      <div class="card order o1" style="top:0"><div class="row"><div><p style="font:800 44px Montserrat">Recipe e-book</p><p class="muted" style="font:400 30px Roboto;margin-top:8px">Paid with UPI · Razorpay</p></div><span class="pill paid" style="margin-left:auto">Paid</span></div></div>
+      <div class="card order o2" style="top:200px"><div class="row"><div><p style="font:800 44px Montserrat">Merch drop</p><p class="muted" style="font:400 30px Roboto;margin-top:8px">Order shipped · tracking added</p></div><span class="pill paid" style="margin-left:auto">Paid</span></div></div>
+      <div class="card order o3" style="top:400px"><div class="row"><div><p style="font:800 44px Montserrat">Affiliate pick</p><p class="muted" style="font:400 30px Roboto;margin-top:8px">From any product link</p></div><span class="pill paid" style="margin-left:auto">Live</span></div></div>
+    </div>
+  </section>
+
+  <!-- S7: CTA (logo in the 3D layer above) -->
+  <section class="scene" id="s7" style="justify-content:flex-end; padding-bottom:300px">
+    <p class="brandmark">Creators<span style="color:var(--crimson)">Club</span></p>
+    <h2 style="margin-top:28px; font-size:88px">Join <span class="grad">free</span> today.</h2>
+    <div class="cta">Get started →</div>
+    <p class="url">creatorsclub.co.in</p>
+    <p class="tagline">Connect · Collaborate · Create · Earn</p>
+  </section>
+
+<script type="importmap">
+{ "imports": {
+  "three": "/node_modules/three/build/three.module.js",
+  "three/addons/": "/node_modules/three/examples/jsm/",
+  "gsap": "/node_modules/gsap/index.js"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { gsap } from 'gsap';
+
+const DURATION = 30;
+const W = 1080, H = 1920;
+
+// ---------- 3D layer: particles + extruded Creators Club logo ----------
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('gl'), antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1);
+renderer.setSize(W, H, false);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 0.85;
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(40, W / H, 0.1, 100);
+camera.position.set(0, 0, 14);
+const pmrem = new THREE.PMREMGenerator(renderer);
+scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.45;
+scene.add(new THREE.AmbientLight(0xffffff, 0.25));
+const key = new THREE.DirectionalLight(0xfff3ec, 2.2); key.position.set(4, 6, 6); scene.add(key);
+const warm = new THREE.PointLight(0xff5722, 60, 30); warm.position.set(-6, -3, 5); scene.add(warm);
+const cool = new THREE.PointLight(0x8b5cf6, 40, 30); cool.position.set(6, 4, -2); scene.add(cool);
+
+// particles
+const N = 2200, pos = new Float32Array(N * 3), col = new Float32Array(N * 3);
+const pal = ['#ff5722', '#e53935', '#ff8a4c', '#8b5cf6', '#f5f5f7'].map((c) => new THREE.Color(c));
+let seed = 7; const rnd = () => ((seed = (seed * 16807) % 2147483647) / 2147483647);
+for (let i = 0; i < N; i++) {
+  pos.set([(rnd() - 0.5) * 22, (rnd() - 0.5) * 40, (rnd() - 0.5) * 16 - 4], i * 3);
+  const c = pal[i % 11 === 0 ? 4 : i % 4]; col.set([c.r, c.g, c.b], i * 3);
+}
+const pg = new THREE.BufferGeometry();
+pg.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+pg.setAttribute('color', new THREE.BufferAttribute(col, 3));
+const points = new THREE.Points(pg, new THREE.PointsMaterial({ size: 0.06, vertexColors: true, transparent: true, opacity: 0.85, depthWrite: false, blending: THREE.AdditiveBlending }));
+scene.add(points);
+
+// logo
+const logo = new THREE.Group(); scene.add(logo);
+const svgText = await (await fetch('/public/brand/cc-icon-on-light.svg')).text();
+const data = new SVGLoader().parse(svgText);
+const mats = {
+  flame: new THREE.MeshPhysicalMaterial({ color: '#ff4a1c', metalness: .2, roughness: .16, clearcoat: 1, clearcoatRoughness: .08, emissive: '#7a0d06', emissiveIntensity: .35 }),
+  crimson: new THREE.MeshPhysicalMaterial({ color: '#e53935', metalness: .25, roughness: .2, clearcoat: 1, emissive: '#5a0705', emissiveIntensity: .3 }),
+  silver: new THREE.MeshPhysicalMaterial({ color: '#eceef3', metalness: .75, roughness: .22, clearcoat: .6 }),
+};
+const inner = new THREE.Group(); const box = new THREE.Box3();
+for (const path of data.paths) {
+  const node = path.userData?.node; if (!node || node.nodeName.toLowerCase() === 'rect') continue;
+  const fill = String(path.userData?.style?.fill ?? '').toLowerCase();
+  const m = fill.startsWith('url') ? mats.flame : fill.includes('1d1d1d') ? mats.silver : mats.crimson;
+  for (const shape of SVGLoader.createShapes(path)) {
+    const g = new THREE.ExtrudeGeometry(shape, { depth: m === mats.crimson ? 9.5 : 7, bevelEnabled: true, bevelThickness: .9, bevelSize: .6, bevelSegments: 4, curveSegments: 24 });
+    g.computeBoundingBox(); box.union(g.boundingBox);
+    const mesh = new THREE.Mesh(g, m); if (m === mats.crimson) mesh.position.z = -1.2; inner.add(mesh);
+  }
+}
+const c = box.getCenter(new THREE.Vector3()), s = box.getSize(new THREE.Vector3());
+inner.position.set(-c.x, -c.y, -c.z);
+const scaler = new THREE.Group(); scaler.add(inner);
+const k = 4.3 / Math.max(s.x, s.y); scaler.scale.set(k, -k, k);
+logo.add(scaler);
+
+// ---------- 2D timeline ----------
+const tl = gsap.timeline({ paused: true });
+const show = (id, at, len) => {
+  tl.fromTo(id, { opacity: 0 }, { opacity: 1, duration: .45, ease: 'power2.out' }, at);
+  tl.to(id, { opacity: 0, duration: .4, ease: 'power2.in' }, at + len - .4);
+};
+// S1 0–3.2
+show('#s1', 0, 3.2);
+tl.from('#s1 .eyebrow', { y: 40, opacity: 0, duration: .6, ease: 'power3.out' }, .5);
+tl.from('#s1 .word', { y: 90, opacity: 0, duration: .7, stagger: .14, ease: 'power3.out' }, .7);
+// S2 3.2–7
+show('#s2', 3.2, 3.8);
+tl.from('#s2 .qmark', { scale: .3, rotation: -20, opacity: 0, duration: .7, ease: 'back.out(2)' }, 3.3);
+tl.from('#s2 h2', { y: 60, opacity: 0, duration: .6, ease: 'power3.out' }, 3.6);
+tl.from('#s2 .bot', { y: 60, opacity: 0, duration: .45, stagger: .08, ease: 'power2.out' }, 4.0);
+tl.to('#s2 .bot', { opacity: .25, scale: .85, duration: .5, stagger: .06 }, 5.4);
+tl.from('#s2 .sub', { y: 40, opacity: 0, duration: .6 }, 4.6);
+// S3 7–11.5
+show('#s3', 7, 4.5);
+tl.from('#s3 h2', { y: 60, opacity: 0, duration: .6, ease: 'power3.out' }, 7.1);
+tl.from('#s3 .profile', { y: 140, rotationX: 35, opacity: 0, duration: .8, ease: 'power3.out', transformPerspective: 1400 }, 7.4);
+tl.from('#s3 .ck', { x: -60, opacity: 0, duration: .4, stagger: .35, ease: 'power2.out' }, 8.1);
+tl.from('#vbadge', { scale: 2.6, opacity: 0, rotation: -12, duration: .45, ease: 'back.out(2.5)' }, 9.9);
+// S4 11.5–16.5
+show('#s4', 11.5, 5);
+tl.from('#s4 h2', { y: 60, opacity: 0, duration: .6, ease: 'power3.out' }, 11.6);
+tl.from('#s4 .campaign', { y: 160, rotationY: -25, opacity: 0, duration: .8, ease: 'power3.out', transformPerspective: 1400 }, 11.9);
+['Pitch', 'Script', 'Draft', 'Live'].forEach((_, i) => {
+  tl.to(`#s4 .stage:nth-child(${i + 1})`, { backgroundColor: 'rgba(0,186,124,.16)', color: '#5eead4', borderColor: 'rgba(0,186,124,.45)', scale: 1.06, duration: .3, ease: 'back.out(3)' }, 12.9 + i * .7);
+});
+tl.to('#s4 .bar > div', { width: '100%', duration: 2.8, ease: 'power1.inOut' }, 12.9);
+// S5 16.5–21.5
+show('#s5', 16.5, 5);
+tl.from('#s5 h2', { y: 60, opacity: 0, duration: .6, ease: 'power3.out' }, 16.6);
+tl.from('#s5 .phone', { y: 220, rotationX: 25, opacity: 0, duration: .9, ease: 'power3.out', transformPerspective: 1600 }, 16.8);
+tl.from('#s5 .c1', { y: 40, opacity: 0, duration: .45, ease: 'power2.out' }, 17.7);
+tl.from('#s5 .c2', { y: 40, opacity: 0, duration: .45, ease: 'power2.out' }, 18.6);
+tl.from('#s5 .c3', { y: 40, opacity: 0, duration: .5, ease: 'power2.out' }, 19.4);
+tl.from('#s5 .c4', { scale: .8, opacity: 0, duration: .45, ease: 'back.out(2)' }, 20.2);
+// S6 21.5–25.5
+show('#s6', 21.5, 4);
+tl.from('#s6 h2', { y: 60, opacity: 0, duration: .6, ease: 'power3.out' }, 21.6);
+tl.from('#s6 .order', { y: 220, opacity: 0, rotationX: 30, duration: .6, stagger: .45, ease: 'back.out(1.4)', transformPerspective: 1400 }, 22.0);
+tl.from('#s6 .paid', { scale: 0, duration: .35, stagger: .45, ease: 'back.out(3)' }, 22.5);
+// S7 25.5–30 (no fade out)
+tl.fromTo('#s7', { opacity: 0 }, { opacity: 1, duration: .5 }, 25.5);
+tl.from('#s7 .brandmark', { y: 40, opacity: 0, duration: .5 }, 26.0);
+tl.from('#s7 h2', { y: 60, opacity: 0, duration: .6, ease: 'power3.out' }, 26.3);
+tl.from('#s7 .cta', { scale: .6, opacity: 0, duration: .6, ease: 'back.out(2)' }, 26.8);
+tl.from('#s7 .url', { y: 30, opacity: 0, duration: .5 }, 27.3);
+tl.from('#s7 .tagline', { opacity: 0, duration: .6 }, 27.7);
+tl.to('#s7 .cta', { scale: 1.06, duration: .5, yoyo: true, repeat: 2, ease: 'sine.inOut' }, 28.2);
+tl.set({}, {}, DURATION);
+
+// ---------- deterministic render at time t ----------
+const smooth = (a, b, x) => { const t = Math.min(1, Math.max(0, (x - a) / (b - a))); return t * t * (3 - 2 * t); };
+function renderAt(t) {
+  tl.seek(t, false);
+  // logo: big hero in S1, gone during the story, back for the CTA
+  const inS1 = 1 - smooth(2.6, 3.3, t);
+  const inS7 = smooth(25.4, 26.4, t);
+  const vis = Math.max(inS1 * smooth(0, .8, t), inS7);
+  logo.visible = vis > 0.001;
+  const sc = 0.4 + 0.6 * vis;
+  logo.scale.setScalar(sc * (t < 15 ? 1 : 0.9));
+  logo.position.set(0, t < 15 ? 2.3 + (1 - smooth(0, 1.2, t)) * 2 : 3.1, 0);
+  logo.rotation.y = t < 15 ? (1 - smooth(0, 1.6, t)) * -Math.PI * 1.3 + Math.sin(t * 1.2) * .18 : (1 - smooth(25.4, 27, t)) * Math.PI * 1.3 + Math.sin(t * 1.2) * .18;
+  logo.rotation.x = Math.sin(t * .9) * .08;
+  // camera drift + particles flowing up
+  camera.position.x = Math.sin(t * .25) * .6;
+  camera.position.y = Math.cos(t * .2) * .4;
+  camera.lookAt(0, 0, 0);
+  points.rotation.y = t * .04;
+  points.position.y = (t * .35) % 20 - 4;
+  renderer.render(scene, camera);
+}
+window.DURATION = DURATION;
+window.renderAt = renderAt;
+await document.fonts.ready;
+renderAt(0);
+window.__ready = true;
+</script>
+</body>
+</html>
