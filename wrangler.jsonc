@@ -13,7 +13,8 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "drop-trailing-slash",
-    "run_worker_first": ["/api/*"]
+    // Every request reaches the Worker first: it forwards creatorsclub.co.in to the public website (see worker/index.ts).
+    "run_worker_first": true
   },
   "observability": { "enabled": true },
   // Contact form storage. Create once with:

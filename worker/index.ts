@@ -50,8 +50,38 @@ async function handleContact(req: Request, env: Env): Promise<Response> {
   return json({ ok: true });
 }
 
+/**
+ * creatorsclub.co.in now shows the team's public website (OrumindCreatorsClub/Frontend-public), which runs
+ * on the production VM behind public.creatorsclub.co.in. This Worker forwards every request there, so the
+ * main domain serves it without changing DNS. Set FORWARD_TO = '' to serve this repo's Astro site again.
+ */
+const FORWARD_TO = 'https://public.creatorsclub.co.in';
+
+async function forward(req: Request): Promise<Response> {
+  const incoming = new URL(req.url);
+  const target = new URL(incoming.pathname + incoming.search, FORWARD_TO);
+  const headers = new Headers(req.headers);
+  headers.set('x-forwarded-host', incoming.host);
+  headers.set('x-forwarded-proto', 'https');
+  const res = await fetch(target.toString(), {
+    method: req.method,
+    headers,
+    body: req.method === 'GET' || req.method === 'HEAD' ? undefined : req.body,
+    redirect: 'manual',
+  });
+  // Keep visitors on the main domain if the origin redirects to its own hostname.
+  const location = res.headers.get('location');
+  if (location && location.startsWith(FORWARD_TO)) {
+    const out = new Response(res.body, res);
+    out.headers.set('location', `https://${incoming.host}${location.slice(FORWARD_TO.length)}`);
+    return out;
+  }
+  return res;
+}
+
 export default {
   async fetch(req: Request, env: Env): Promise<Response> {
+    if (FORWARD_TO) return forward(req);
     const url = new URL(req.url);
     if (url.pathname === '/api/contact') return handleContact(req, env);
     if (url.pathname.startsWith('/api/')) return json({ error: 'not_found' }, 404);
